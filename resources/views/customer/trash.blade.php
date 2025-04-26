@@ -6,16 +6,16 @@
 
 <div class="row justify-content-center mt-5">
         <div class="col-md-8">
-            <h3>Customers</h3>
+            <h3>Trash</h3>
             <div class="card">
                <div class="card-header">
     <div class="row align-items-center">
         <div class="col-md-2">
-            <a href="{{ route('customer.create') }}" class="btn" style="background-color: #4643d3; color: white;">
-                <i class="fas fa-plus"></i> Create Customer
+            <a href="{{ route('customer.index') }}" class="btn" style="background-color: #4643d3; color: white;">
+                <i class="fas fa-arrow-left"></i> Back
             </a>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-8">
             <form action="{{ route('customer.index') }}" method="GET">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Search anything..." name="search" value="{{ request()->search }}" aria-describedby="button-addon2">
@@ -33,11 +33,7 @@
                 </div>
             </form>
         </div>
-        <div class="col-md-2">
-            <a href="{{ route('customer.create') }}" class="btn btn-dark">
-                <i class="fa fa-trash"></i> Trash
-            </a>
-        </div>
+       
     </div>
 </div>
 
@@ -65,13 +61,12 @@
                             <td >{{ $customer->email }}</td>
                             <td>{{ $customer->bank_account_number }}</td>
                             <td>
-                                <a href="{{ route('customer.edit', $customer->id) }}" style="color: #2c2c2c;" class="ms-1 me-1"><i class="far fa-edit"></i></a>
-                                <a href="{{ route('customer.show', $customer->id) }}" style="color: #2c2c2c;" class="ms-1 me-1"><i class="far fa-eye"></i></a>
+                                <a href="{{ route('customer.restore', $customer->id) }}" style="color: #2c2c2c;" class="ms-1 me-1"><i class="fa fa-trash-restore"></i></a>
                                 <a href="javascript:;" onclick="
                                  if(confirm('Are you sure you want to delete user?'))  $('.form-{{ $customer->id }}').submit()"
                                   style="color: #2c2c2c;" class="ms-1 me-1"><i class="fas fa-trash-alt"></i></a>
                                
-                                <form  class="form-{{ $customer->id }}" action="{{ route('customer.destroy', $customer->id) }}" method="POST">
+                                <form  class="form-{{ $customer->id }}" action="{{ route('customer.forceDelete', $customer->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
 

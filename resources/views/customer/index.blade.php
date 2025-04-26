@@ -34,7 +34,7 @@
             </form>
         </div>
         <div class="col-md-2">
-            <a href="{{ route('customer.create') }}" class="btn btn-dark">
+            <a href="{{ route('customer.trash') }}" class="btn btn-dark">
                 <i class="fa fa-trash"></i> Trash
             </a>
         </div>
